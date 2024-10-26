@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1'
+HD_PWD='C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

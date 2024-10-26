@@ -10,6 +10,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////notes////////////////////////////////////////////////////////
+///if you want to add new states, modify 1) state definition (add or modify state name, take note of #total state | register value) 2) clk selection 3)btn checking logic (add a state and clear value at IDLE) 4)OLED assignment 5)score system 6) 
 
 module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,output [7:0] JB,output reg [6:0]seg, output reg [3:0]an);
        
@@ -32,26 +34,31 @@ parameter [15:0] CYAN = 16'b0011011011011011,
                  RED = 16'b1111100000000000,
                  YELLOW = 16'b1111111111100000,
                  ORANGE = 16'b1101110100000001,
-                 MAGENTA = 16'b1100101011011101;
+                 MAGENTA = 16'b1100101011011101,
+                 PINK = 16'b11111_000111_10011,
+                 BLUE = 16'b00011_111011_10110;
+                 
 Oled_Display oled_display(clk_6p25mhz, 0, frame_begin, sending_pixels, sample_pixel, pixel_index, oled_data, JB[0], JB[1], JB[3], JB[4], JB[5], JB[6], JB[7]);
 
-//////////////////finite state machine
+///////////////////////////////////////////////////////////////states definition
 reg [7:0] box_top = 0;
 reg [7:0] triangle_top = 0;
 reg [7:0] circle_top = 0;
+reg [7:0] star_top = 0;
+reg [7:0] ring_top = 0;
 reg [2:0] state;
 reg [13:0] score = 0;
 parameter [2:0] 
         IDLE = 3'b000,
         START = 3'b001,
         CIRCLE = 3'b010,
-        SCORE_DISPLAY = 3'b011,
+        RING = 3'b011,
         MISSED = 3'b100,
-        SQUARE_DISAPPEAR = 3'b101,
+        STAR = 3'b101,
         RESET = 3'b110, 
         TRIANGLE = 3'b111;
         
-////////7 segment 
+//////////////////////////////////////////////////////////////////////////7 segment 
 reg [1:0] digit_select = 0;
 reg [6:0] seg_value [0:9];
 initial 
@@ -70,19 +77,17 @@ end
 //BRAM initialisation
 
 /////////clk select
+
+//////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
 begin
-    if(state == START)
+    if(state == START || state == CIRCLE)
     begin
         insert_clk <= clk_40hz;
     end
-    if(state == TRIANGLE)
+    if(state == TRIANGLE || state == STAR || state == RING)
     begin
         insert_clk <= clk_20hz;
-    end
-    if(state == CIRCLE)
-    begin
-        insert_clk <= clk_40hz;
     end
     else
     begin
@@ -90,6 +95,7 @@ begin
     end
 end
 
+//////////////////////////////////////////////////////////////////////////////btn checking logic
 always@(posedge insert_clk)
 begin
     //////RESET
@@ -115,6 +121,8 @@ begin
             box_top <= 0;
             triangle_top <= 0;
             circle_top <= 0;
+            star_top <= 0;
+            ring_top <= 0;
             score <= 0;
                 if(btnC)
                 begin
@@ -180,7 +188,7 @@ begin
                 begin
                     score <= score + 4;
                     triangle_top <= 0;
-                    state <= START;
+                    state <= STAR;
                 end
                 else
                 begin
@@ -189,10 +197,57 @@ begin
             end
         end
         
+        ////////////////////////////////////////////////////////////STAR STATE
+        STAR:
+        begin
+            if(star_top < 47)
+            begin
+                star_top <= star_top + 1;
+            end
+            if(star_top == 47)
+            begin
+                if(btnU && btnL)
+                begin
+                    score <= score + 6;
+                    circle_top <= 0;
+                    state <= RING;
+                end
+                else
+                begin
+                    state <= MISSED;
+                end    
+            end
+        end
+        
+        /////////////////////////////////////////////////////////////RING STATE
+        
+        RING:
+        begin
+            if(ring_top < 47)
+            begin
+                ring_top <= ring_top + 1;
+            end
+            if(ring_top == 47)
+            begin
+                if(btnU && btnD)
+                begin
+                    score <= score + 8;
+                    star_top <= 0;
+                    state <= START;
+                end
+                else
+                begin
+                    state <= MISSED;
+                end    
+            end
+        
+        
+        end
+        
         /////////////////MISSED STATE
         MISSED:
         begin
-            if(btnC)
+            if(btnR)
             begin
                 state <= IDLE;
             end
@@ -204,6 +259,7 @@ begin
     end
 end
 
+////////////////////////////////////////////////////OLED Assignment
 always@(posedge clk_6p25mhz)
 begin
     col <= pixel_index % 96;
@@ -297,9 +353,41 @@ begin
         end
     end
     
+    if(state == STAR)
+    begin
+        if (col<80 && col>=5 && row >= 58 && row <=60)
+        begin
+            oled_data <= YELLOW;
+        end
+        else if(col>=30 && col<50 && row >= star_top && row < star_top + 10)
+        begin
+            oled_data <= PINK;
+        end 
+        else 
+        begin
+            oled_data <= BLACK;
+        end
+    end
+    
+    if(state == RING)
+    begin
+        if (col<80 && col>=5 && row >= 58 && row <=60)
+        begin
+            oled_data <= YELLOW;
+        end
+        else if(col>=10 && col<50 && row >= ring_top && row < ring_top + 10)
+        begin
+            oled_data <= BLUE;
+        end 
+        else 
+        begin
+            oled_data <= BLACK;
+        end
+    end
     ///other states
 end
 
+//////////////////////////////////////////////////////////////////////////////////score system
 always@(posedge clk_200hz)
 begin
 
@@ -316,7 +404,7 @@ begin
             seg[6:0] <= 7'b1111110;
         end
         
-        START,TRIANGLE,CIRCLE,MISSED:
+        START,TRIANGLE,CIRCLE,STAR,RING,MISSED:
         begin
             case(digit_select)
                     2'b00: begin
