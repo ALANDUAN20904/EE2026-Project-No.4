@@ -144,6 +144,9 @@ begin
                     score <= score + 1;
                     circle_top <= 0;
                     triangle_top <= 0;
+                    star_top <= 0;
+                    ring_top <= 0;
+                    //////////////////if fail system is taken out then don't care else remember to add here/////////////////////
                     state <= TRIANGLE;
                 end
                 else
