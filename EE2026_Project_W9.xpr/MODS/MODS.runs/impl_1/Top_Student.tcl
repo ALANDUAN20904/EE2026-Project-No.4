@@ -68,12 +68,12 @@ set rc [catch {
   create_project -in_memory -part xc7a35tcpg236-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir {C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.cache/wt} [current_project]
-  set_property parent.project_path {C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.xpr} [current_project]
-  set_property ip_output_repo {{C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.cache/ip}} [current_project]
+  set_property webtalk.parent_dir C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.cache/wt [current_project]
+  set_property parent.project_path C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.xpr [current_project]
+  set_property ip_output_repo C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet {{C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.runs/synth_1/Top_Student.dcp}}
-  read_xdc {{C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/EE2026_Project_W9.xpr/MODS/MODS.srcs/constrs_1/new/constraints.xdc}}
+  add_files -quiet C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/synth_1/Top_Student.dcp
+  read_xdc C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/constrs_1/new/constraints.xdc
   link_design -top Top_Student -part xc7a35tcpg236-1
   close_msg_db -file init_design.pb
 } RESULT]

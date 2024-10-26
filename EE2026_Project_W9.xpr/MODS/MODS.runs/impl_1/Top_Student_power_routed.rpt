@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Wed Oct 16 00:34:01 2024
+| Date             : Sat Oct 26 23:21:41 2024
 | Host             : AlanTheGreat running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_Student_power_routed.rpt -pb Top_Student_power_summary_routed.pb -rpx Top_Student_power_routed.rpx
 | Design           : Top_Student
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.076        |
+| Total On-Chip Power (W)  | 0.080        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.004        |
+| Dynamic (W)              | 0.008        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     1307 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      771 |     20800 |            3.71 |
-|   CARRY4       |    <0.001 |       90 |      8150 |            1.10 |
-|   Register     |    <0.001 |      285 |     41600 |            0.69 |
-|   F7/F8 Muxes  |    <0.001 |       16 |     32600 |            0.05 |
-|   Others       |     0.000 |       11 |       --- |             --- |
-|   BUFG         |     0.000 |        2 |        32 |            6.25 |
-| Signals        |    <0.001 |      967 |       --- |             --- |
-| I/O            |    <0.001 |       25 |       106 |           23.58 |
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |     0.002 |     1515 |       --- |             --- |
+|   LUT as Logic |     0.001 |      852 |     20800 |            4.10 |
+|   CARRY4       |    <0.001 |      111 |      8150 |            1.36 |
+|   Register     |    <0.001 |      337 |     41600 |            0.81 |
+|   F7/F8 Muxes  |    <0.001 |       21 |     32600 |            0.06 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Others       |     0.000 |       13 |       --- |             --- |
+| Signals        |     0.001 |     1112 |       --- |             --- |
+| I/O            |     0.004 |       26 |       106 |           24.53 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.076 |          |           |                 |
+| Total          |     0.080 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.013 |       0.003 |      0.010 |
+| Vccint    |       1.000 |     0.014 |       0.004 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -142,7 +142,8 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| Top_Student    |     0.004 |
+| Top_Student    |     0.008 |
+|   clk20hz      |    <0.001 |
 |   clk40hz      |    <0.001 |
 |   clk6p25mhz   |    <0.001 |
 |   clk80hz      |    <0.001 |
