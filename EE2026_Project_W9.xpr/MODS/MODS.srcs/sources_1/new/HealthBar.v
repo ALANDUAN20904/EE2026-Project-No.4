@@ -21,9 +21,9 @@
 
 
 module HealthBar#(parameter R = 8,
-          parameter DUTY1 = 8'd192,
-                    DUTY2 = 8'd128,
-                    DUTY3 = 8'd64)
+          parameter DUTY1 = 8'd64,
+                    DUTY2 = 8'd30,
+                    DUTY3 = 8'd10)
                     (input clk,input [3:1] sw, output reg pwm_out);
 
 ///////////////////global parameter 
@@ -32,12 +32,18 @@ module HealthBar#(parameter R = 8,
           
 //`endif
 
+//////////////////////////////////////////////////////clks
+wire clk_20hz;
+flexi_clk clk20hzHB(clk, 32'd2499999,clk_20hz);
+
 //////////////////////////////////resolution is 8, it's 8 bit countup to 255 (in total 256 counts)
 
 reg [R-1:0] count = 0;
-reg [R-1:0] duty = 0;
+reg [R-1:0] duty;
 
 ///////////////////////////////////////////////////////sw
+/////later implement 3 switches, so 3 switches represent value, where duty = value * (2**R), so 3 values would be 0.25 0.5 and 0.75
+
 always@(posedge clk)
 begin
     case(sw)
@@ -48,7 +54,11 @@ begin
     endcase
 end
 
-/////later implement 3 switches, so 3 switches represent value, where duty = value * (2**R), so 3 values would be 0.25 0.5 and 0.75
+////////////////////////////////////////////////increment duty cycle by 20hz
+//always@(clk_20hz)
+//begin
+//    duty <= (duty == 8'd255)?0:duty + 1;
+//end
 
 always@(posedge clk)
 begin
