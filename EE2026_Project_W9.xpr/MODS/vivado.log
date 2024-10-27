@@ -2,29 +2,21 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sat Oct 26 23:18:23 2024
-# Process ID: 15436
+# Start of session at: Sat Oct 26 23:28:23 2024
+# Process ID: 25064
 # Current directory: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14864 C:\Users\dtc20\EE2026-Project-No.4\EE2026_Project_W9.xpr\MODS\MODS.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent22268 C:\Users\dtc20\EE2026-Project-No.4\EE2026_Project_W9.xpr\MODS\MODS.xpr
 # Log file: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/vivado.log
 # Journal file: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS\vivado.jou
 #-----------------------------------------------------------
-start_gui
-open_project C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.xpr
+start_guopopen_project C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.xpr
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'.
-open_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 852.008 ; gain = 109.324
-update_compile_order -fileset sources_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 16
-[Sat Oct 26 23:19:45 2024] Launched synth_1...
-Run output will be captured here: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/synth_1/runme.log
-[Sat Oct 26 23:19:45 2024] Launched impl_1...
-Run output will be captured here: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1/runme.log
-open_hw
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'opopen_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 878.203 ; gain = 129.617
+exit
+INFO: [Common 17-206] Exiting Vivopen_hw
 connect_hw_server
 INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
 INFO: [Labtools 27-2222] Launching hw_server...
@@ -58,5 +50,46 @@ Resolution:
 1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active.
 2. Make sure the BSCAN_SWITCH_USER_MASK device property in Vivado Hardware Manager reflects the user scan chain setting in the design and refresh the device.  To determine the user scan chain setting in the design, open the implemented design and use 'get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub]'.
 For more details on setting the scan chain property, consult the Vivado Debug and Programming User Guide (UG908).
+open_project {C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/PreY2S1 Study/EE2026/Lab Manual/Pre-Project/MODS.xpr/Kopi_Teh_revolution_4/Kopi_Teh_revolution_4.xpr}
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/PreY2S1 Study/EE2026/Lab Manual/Pre-Project/MODS.xpr/Kopi_Teh_revolution_4'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'.
+update_compile_order -fileset sources_1
+close_project
+open_project {C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/PreY2S1 Study/EE2026/Lab Manual/EE2026_Project_W9.xpr/MODS/MODS.xpr}
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/dtc20/OneDrive - National University of Singapore/Desktop/PreY2S1 Study/EE2026/Lab Manual/EE2026_Project_W9.xpr/MODS'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'.
+update_compile_order -fileset sources_1
+close_project
+open_project C:/Users/dtc20/basictasks/MODS.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'.
+update_compile_order -fileset sources_1
+close_project
+close [ open C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/HealthBar.v w ]
+add_files C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/HealthBar.v
+update_compile_order -fileset sources_1
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210183BB3DB1A
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183BB3DB1A
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3361] The debug hub core was not detected.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active.
+2. Make sure the BSCAN_SWITCH_USER_MASK device property in Vivado Hardware Manager reflects the user scan chain setting in the design and refresh the device.  To determine the user scan chain setting in the design, open the implemented design and use 'get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub]'.
+For more details on setting the scan chain property, consult the Vivado Debug and Programming User Guide (UG908).
+WARNING: [Labtoolstcl 44-129] No matching hw_ila_data was found.
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210183BB3DB1A
 exit
-INFO: [Common 17-206] Exiting Vivado at Sat Oct 26 23:23:48 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 27 13:17:59 2024...
