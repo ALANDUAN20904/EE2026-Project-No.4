@@ -76,7 +76,9 @@ begin
 end
 //BRAM initialisation
 
-/////////clk select
+//////////////////////////////////////////////////////////////////////////health system
+
+reg [7:0] health = 8'd5;
 
 //////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
@@ -99,6 +101,11 @@ end
 always@(posedge insert_clk)
 begin
     //////RESET
+    if(health < 1)
+    begin
+        state <= MISSED;
+    end
+    
     if (reset)
     begin
         state <= RESET;
@@ -124,6 +131,7 @@ begin
             star_top <= 0;
             ring_top <= 0;
             score <= 0;
+            health <= 8'd5;
                 if(btnC)
                 begin
                     state <= START;
@@ -133,10 +141,7 @@ begin
         ///////////////START STATE
         START:
         begin
-            circle_top <= 0;
-            triangle_top <= 0;
-            star_top <= 0;
-            ring_top <= 0;
+            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;health<=8'd5;
             if(box_top < 42)
             begin
                 box_top <= box_top + 1;
@@ -150,6 +155,7 @@ begin
                 end
                 else
                 begin
+                    health <= health - 1;
                     state <= TRIANGLE;
                 end
             end
@@ -171,6 +177,7 @@ begin
                 end
                 else
                 begin
+                    health <= health - 1;
                     state <= CIRCLE;
                 end
             end
@@ -193,6 +200,7 @@ begin
                 end
                 else
                 begin
+                    health <= health - 1;
                     state <= STAR;
                 end
             end
@@ -215,6 +223,7 @@ begin
                 end
                 else
                 begin
+                    health <= health - 1;
                     state <= RING;
                 end    
             end
@@ -239,6 +248,7 @@ begin
                 else
                 begin
                     box_top <= 0;
+                    health <= health - 1;
                     state <= START;
                 end    
             end       
@@ -260,7 +270,7 @@ begin
     end
 end
 
-////////////////////////////////////////////////////OLED Assignment
+///////////////////////////////////////////////////////////////////////////////////OLED Assignment
 always@(posedge clk_6p25mhz)
 begin
     col <= pixel_index % 96;
