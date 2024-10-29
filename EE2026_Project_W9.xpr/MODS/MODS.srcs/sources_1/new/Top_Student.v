@@ -81,6 +81,13 @@ end
 reg [9:0]health = 100;
 
 HealthBar healthbar(health,clk,led);
+
+parameter [3:0] SQUARE_DEDUCT = 4,
+                TRIANGLE_DEDUCT = 1,
+                CIRCLE_DEDUCT = 12,
+                STAR_DEDUCT = 10,
+                RING_DEDUCT = 2;
+                
 //////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
 begin
@@ -158,7 +165,7 @@ begin
                     end
                     else
                     begin
-                        health <= health - 4;
+                        health <= (health > SQUARE_DEDUCT)?(health - SQUARE_DEDUCT):0;     
                         state <= TRIANGLE;
                     end
                 end
@@ -180,7 +187,7 @@ begin
                 end
                 else
                 begin
-                    health <= health - 1;
+                    health <= (health > TRIANGLE_DEDUCT)?(health - TRIANGLE_DEDUCT):0;
                     state <= CIRCLE;
                 end
             end
@@ -203,7 +210,7 @@ begin
                 end
                 else
                 begin
-                    health <= health - 1;
+                    health <= (health > CIRCLE_DEDUCT)?(health - CIRCLE_DEDUCT):0;
                     state <= STAR;
                 end
             end
@@ -226,7 +233,7 @@ begin
                 end
                 else
                 begin
-                    health <= health - 1;
+                    health <= (health > STAR_DEDUCT)?(health - STAR_DEDUCT):0;
                     state <= RING;
                 end    
             end
@@ -251,7 +258,7 @@ begin
                 else
                 begin
                     box_top <= 0;
-                    health <= health - 1;
+                    health <= (health > RING_DEDUCT)?(health - RING_DEDUCT):0;
                     state <= SQUARE;
                 end    
             end       
