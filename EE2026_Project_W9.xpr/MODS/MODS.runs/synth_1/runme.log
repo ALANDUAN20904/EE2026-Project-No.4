@@ -14,9 +14,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 18024 
+INFO: Helper process launched with PID 25244 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 356.293 ; gain = 98.824
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 356.738 ; gain = 99.344
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top_Student' [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v:16]
 	Parameter CYAN bound to: 16'b0011011011011011 
@@ -37,8 +37,8 @@ INFO: [Synth 8-6157] synthesizing module 'Top_Student' [C:/Users/dtc20/EE2026-Pr
 	Parameter TRIANGLE bound to: 3'b111 
 	Parameter SQUARE_DEDUCT bound to: 4'b0100 
 	Parameter TRIANGLE_DEDUCT bound to: 4'b0001 
-	Parameter CIRCLE_DEDUCT bound to: 4'b1100 
-	Parameter STAR_DEDUCT bound to: 4'b1010 
+	Parameter CIRCLE_DEDUCT bound to: 4'b0011 
+	Parameter STAR_DEDUCT bound to: 4'b0100 
 	Parameter RING_DEDUCT bound to: 4'b0010 
 INFO: [Synth 8-6157] synthesizing module 'flexi_clk' [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/flexi_clk.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'flexi_clk' (1#1) [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/flexi_clk.v:23]
@@ -111,11 +111,11 @@ INFO: [Synth 8-6157] synthesizing module 'HealthBar' [C:/Users/dtc20/EE2026-Proj
 	Parameter DUTY10 bound to: 10'b1111101000 
 INFO: [Synth 8-6155] done synthesizing module 'HealthBar' (3#1) [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/HealthBar.v:23]
 INFO: [Synth 8-226] default block is never used [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v:125]
-INFO: [Synth 8-226] default block is never used [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v:415]
+INFO: [Synth 8-226] default block is never used [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v:417]
 INFO: [Synth 8-6155] done synthesizing module 'Top_Student' (4#1) [C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v:16]
 WARNING: [Synth 8-3331] design Top_Student has unconnected port JB[2]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.227 ; gain = 153.758
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.402 ; gain = 154.008
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -128,10 +128,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.227 ; gain = 153.758
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.402 ; gain = 154.008
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.227 ; gain = 153.758
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 411.402 ; gain = 154.008
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -147,22 +147,22 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 755.391 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 754.457 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Oled_Display'
@@ -175,6 +175,11 @@ INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "an" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "digit_select" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "seg_value" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
@@ -219,7 +224,7 @@ INFO: [Synth 8-5544] ROM "seg_value" won't be mapped to Block RAM because addres
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Oled_Display'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -234,7 +239,7 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     17 Bit       Adders := 1     
 	   2 Input     14 Bit       Adders := 5     
-	   2 Input     10 Bit       Adders := 6     
+	   2 Input     10 Bit       Adders := 5     
 	   3 Input     10 Bit       Adders := 5     
 	   2 Input      6 Bit       Adders := 6     
 	   2 Input      2 Bit       Adders := 1     
@@ -262,7 +267,7 @@ Detailed RTL Component Info :
 	   3 Input     16 Bit        Muxes := 3     
 	   2 Input     14 Bit        Muxes := 1     
 	   2 Input     13 Bit        Muxes := 1     
-	   2 Input     10 Bit        Muxes := 14    
+	   2 Input     10 Bit        Muxes := 12    
 	   8 Input      8 Bit        Muxes := 5     
 	  11 Input      7 Bit        Muxes := 4     
 	   3 Input      7 Bit        Muxes := 1     
@@ -273,12 +278,14 @@ Detailed RTL Component Info :
 	  32 Input      5 Bit        Muxes := 1     
 	   6 Input      4 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 2     
-	   2 Input      3 Bit        Muxes := 7     
+	   2 Input      3 Bit        Muxes := 2     
+	   4 Input      3 Bit        Muxes := 4     
+	   5 Input      3 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 35    
+	   2 Input      1 Bit        Muxes := 40    
 	   8 Input      1 Bit        Muxes := 5     
-	   3 Input      1 Bit        Muxes := 2     
+	   3 Input      1 Bit        Muxes := 3     
 	   4 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -291,7 +298,7 @@ Module Top_Student
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     14 Bit       Adders := 5     
-	   2 Input     10 Bit       Adders := 5     
+	   2 Input     10 Bit       Adders := 4     
 	   3 Input     10 Bit       Adders := 5     
 	   2 Input      6 Bit       Adders := 5     
 	   2 Input      2 Bit       Adders := 1     
@@ -311,18 +318,20 @@ Detailed RTL Component Info :
 	   3 Input     16 Bit        Muxes := 3     
 	   2 Input     14 Bit        Muxes := 1     
 	   2 Input     13 Bit        Muxes := 1     
-	   2 Input     10 Bit        Muxes := 5     
+	   2 Input     10 Bit        Muxes := 3     
 	   8 Input      8 Bit        Muxes := 5     
 	  11 Input      7 Bit        Muxes := 4     
 	   3 Input      7 Bit        Muxes := 1     
 	   4 Input      7 Bit        Muxes := 1     
 	   6 Input      4 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 2     
-	   2 Input      3 Bit        Muxes := 7     
+	   2 Input      3 Bit        Muxes := 2     
+	   4 Input      3 Bit        Muxes := 4     
+	   5 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
 	   8 Input      1 Bit        Muxes := 5     
-	   2 Input      1 Bit        Muxes := 18    
-	   3 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 23    
+	   3 Input      1 Bit        Muxes := 3     
 	   4 Input      1 Bit        Muxes := 1     
 Module flexi_clk 
 Detailed RTL Component Info : 
@@ -384,26 +393,24 @@ INFO: [Synth 8-5545] ROM "clk40hz/slow_clk0" won't be mapped to RAM because addr
 INFO: [Synth 8-5545] ROM "clk6p25mhz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "clk20hz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "clk80hz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "fsm_next_state0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "fsm_next_state0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5545] ROM "clk40hz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "clk20hz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "health" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5545] ROM "clk80hz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "clk6p25mhz/slow_clk0" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 WARNING: [Synth 8-3331] design Top_Student has unconnected port JB[2]
 INFO: [Synth 8-3886] merging instance 'oled_data_reg[14]' (FDS) to 'oled_data_reg[15]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -415,13 +422,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 755.391 ; gain = 497.922
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 754.457 ; gain = 497.062
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 767.871 ; gain = 510.402
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 763.906 ; gain = 506.512
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -440,7 +447,7 @@ WARNING: [Synth 8-3332] Sequential element (health_reg[7]) is unused and will be
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\healthbar/health_divide_reg[4] )
 WARNING: [Synth 8-3332] Sequential element (healthbar/health_divide_reg[4]) is unused and will be removed from module Top_Student.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -464,7 +471,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -477,7 +484,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -489,25 +496,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -526,12 +533,12 @@ Report Cell Usage:
 |1     |BUFG   |     3|
 |2     |CARRY4 |   113|
 |3     |LUT1   |    30|
-|4     |LUT2   |   152|
-|5     |LUT3   |   104|
+|4     |LUT2   |   148|
+|5     |LUT3   |   107|
 |6     |LUT4   |   157|
-|7     |LUT5   |   159|
+|7     |LUT5   |   160|
 |8     |LUT6   |   513|
-|9     |MUXF7  |    20|
+|9     |MUXF7  |    19|
 |10    |MUXF8  |     3|
 |11    |FDE_1  |    32|
 |12    |FDRE   |   340|
@@ -545,7 +552,7 @@ Report Instance Areas:
 +------+---------------+-------------+------+
 |      |Instance       |Module       |Cells |
 +------+---------------+-------------+------+
-|1     |top            |             |  1672|
+|1     |top            |             |  1671|
 |2     |  clk20hz      |flexi_clk    |    56|
 |3     |  clk40hz      |flexi_clk_0  |    55|
 |4     |  clk6p25mhz   |flexi_clk_1  |    52|
@@ -554,13 +561,13 @@ Report Instance Areas:
 |7     |  oled_display |Oled_Display |   398|
 +------+---------------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 798.703 ; gain = 541.234
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 798.703 ; gain = 197.070
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:24 . Memory (MB): peak = 798.703 ; gain = 541.234
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 795.824 ; gain = 195.375
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 795.824 ; gain = 538.430
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 175 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 174 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -569,11 +576,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDE_1 => FDRE (inverted pins: C): 32 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-65 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered.
+68 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 798.703 ; gain = 554.445
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 795.824 ; gain = 551.703
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/synth_1/Top_Student.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Top_Student_utilization_synth.rpt -pb Top_Student_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 798.703 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 30 00:05:53 2024...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 795.824 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 30 01:06:55 2024...

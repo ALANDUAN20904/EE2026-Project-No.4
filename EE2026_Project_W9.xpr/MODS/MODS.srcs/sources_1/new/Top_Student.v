@@ -84,8 +84,8 @@ HealthBar healthbar(health,clk,led);
 
 parameter [3:0] SQUARE_DEDUCT = 4,
                 TRIANGLE_DEDUCT = 1,
-                CIRCLE_DEDUCT = 12,
-                STAR_DEDUCT = 10,
+                CIRCLE_DEDUCT = 3,
+                STAR_DEDUCT = 4,
                 RING_DEDUCT = 2;
                 
 //////////////////////////////////////////////////////////////////////////clk selection
@@ -152,18 +152,18 @@ begin
         SQUARE:
         begin
             circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;
-                if(box_top < 42)
+                if(box_top < 42)///add a leeway of 3 pixels, 42 is hitting the bottom
                 begin
                     box_top <= box_top + 1;
                 end
-                if(box_top == 42)
+                if(box_top >=37 && box_top <= 42)
                 begin
                     if(btnU)
                     begin
                         score <= score + 1;
                         state <= TRIANGLE;
                     end
-                    else
+                    else if(box_top == 42)
                     begin
                         health <= (health > SQUARE_DEDUCT)?(health - SQUARE_DEDUCT):0;     
                         state <= TRIANGLE;
@@ -178,14 +178,14 @@ begin
             begin
                 triangle_top <= triangle_top + 1;
             end
-            if(triangle_top == 37)
+            if(triangle_top >= 32 && triangle_top <= 37)
             begin
                 if(btnD)
                 begin
                     score <= score + 2;
                     state <= CIRCLE;
                 end
-                else
+                else if (triangle_top == 37)
                 begin
                     health <= (health > TRIANGLE_DEDUCT)?(health - TRIANGLE_DEDUCT):0;
                     state <= CIRCLE;
@@ -200,7 +200,7 @@ begin
             begin
                 circle_top <= circle_top + 1;
             end
-            if(circle_top == 47)
+            if(circle_top >= 42 && circle_top <= 47)
             begin
                 if(btnL)
                 begin
@@ -208,7 +208,7 @@ begin
                     triangle_top <= 0;
                     state <= STAR;
                 end
-                else
+                else if(circle_top == 47)
                 begin
                     health <= (health > CIRCLE_DEDUCT)?(health - CIRCLE_DEDUCT):0;
                     state <= STAR;
@@ -223,7 +223,7 @@ begin
             begin
                 star_top <= star_top + 1;
             end
-            if(star_top == 47)
+            if(star_top >= 42 && star_top <= 47)
             begin
                 if(btnU && btnL)
                 begin
@@ -231,7 +231,10 @@ begin
                     circle_top <= 0;
                     state <= RING;
                 end
-                else
+                else if(btnU || btnL || btnU || btnD)
+                begin
+                    health <= (health > STAR_DEDUCT)?(health - STAR_DEDUCT):0;
+                end else if(star_top == 47)
                 begin
                     health <= (health > STAR_DEDUCT)?(health - STAR_DEDUCT):0;
                     state <= RING;
@@ -247,7 +250,7 @@ begin
             begin
                 ring_top <= ring_top + 1;
             end
-            if(ring_top == 47)
+            if(ring_top >= 42 && ring_top <= 47)
             begin
                 if(btnU && btnD)
                 begin
@@ -255,14 +258,13 @@ begin
                     star_top <= 0;
                     state <= SQUARE;
                 end
-                else
+                else if(ring_top == 47)
                 begin
                     box_top <= 0;
                     health <= (health > RING_DEDUCT)?(health - RING_DEDUCT):0;
                     state <= SQUARE;
                 end    
             end       
-        
         end
         
         /////////////////MISSED STATE
