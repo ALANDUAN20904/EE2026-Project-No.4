@@ -13,7 +13,7 @@
 ///////////////////////////////////////////////////////////notes////////////////////////////////////////////////////////
 ///if you want to add new states, modify 1) state definition (add or modify state name, take note of #total state | register value) 2) clk selection 3)btn checking logic (add a state and clear value at IDLE) 4)OLED assignment 5)score system 6) 
 
-module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,output [7:0] JB,output reg [6:0]seg, output reg [3:0]an);
+module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,output [7:0] JB,output reg [6:0]seg, output reg [3:0]an, output pwm_out);
        
 ////////////////clk
 reg insert_clk = 0;
@@ -23,6 +23,7 @@ flexi_clk clk6p25mhz (clk,32'd7,clk_6p25mhz);
 flexi_clk clk1hz(clk, 32'd49999999,clk_1hz);
 flexi_clk clk20hz(clk, 32'd2499999,clk_20hz);
 flexi_clk clk80hz (clk,32'd249999 ,clk_200hz);
+
 /////////////////oled display
 wire [12:0] pixel_index;
 reg [15:0] oled_data;
@@ -77,9 +78,13 @@ end
 //BRAM initialisation
 
 //////////////////////////////////////////////////////////////////////////health system
+reg [9:0]health;
+initial
+begin
+    health = 10'd10;
+end
 
-reg [7:0] health = 8'd5;
-
+HealthBar healthbar(health,clk,pwm_out);
 //////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
 begin
@@ -100,12 +105,13 @@ end
 //////////////////////////////////////////////////////////////////////////////btn checking logic
 always@(posedge insert_clk)
 begin
-    //////RESET
-    if(health < 1)
+ 
+    if(health < 10'd1)
     begin
         state <= MISSED;
     end
     
+    ///////////////////////////////////////////////////////////////////////////////RESET state
     if (reset)
     begin
         state <= RESET;
@@ -122,7 +128,7 @@ begin
                 end
         end
         
-        ////////////////IDLE STATE
+        ///////////////////////////////////////////////////////////////////IDLE STATE
         IDLE:
         begin
             box_top <= 0;
@@ -131,17 +137,17 @@ begin
             star_top <= 0;
             ring_top <= 0;
             score <= 0;
-            health <= 8'd5;
+            health <= 10'd10;
                 if(btnC)
                 begin
                     state <= START;
                 end
         end   
         
-        ///////////////START STATE
+        //////////////////////////////////////////////////////////////START STATE
         START:
         begin
-            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;health<=8'd5;
+            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;
             if(box_top < 42)
             begin
                 box_top <= box_top + 1;
