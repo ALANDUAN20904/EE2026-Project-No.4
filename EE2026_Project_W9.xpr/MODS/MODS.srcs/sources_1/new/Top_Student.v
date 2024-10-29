@@ -13,7 +13,7 @@
 ///////////////////////////////////////////////////////////notes////////////////////////////////////////////////////////
 ///if you want to add new states, modify 1) state definition (add or modify state name, take note of #total state | register value) 2) clk selection 3)btn checking logic (add a state and clear value at IDLE) 4)OLED assignment 5)score system 6) 
 
-module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,output [7:0] JB,output reg [6:0]seg, output reg [3:0]an);
+module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,output [7:0] JB,output reg [6:0]seg, output reg [3:0]an, output [9:0]led);
        
 ////////////////clk
 reg insert_clk = 0;
@@ -23,6 +23,7 @@ flexi_clk clk6p25mhz (clk,32'd7,clk_6p25mhz);
 flexi_clk clk1hz(clk, 32'd49999999,clk_1hz);
 flexi_clk clk20hz(clk, 32'd2499999,clk_20hz);
 flexi_clk clk80hz (clk,32'd249999 ,clk_200hz);
+
 /////////////////oled display
 wire [12:0] pixel_index;
 reg [15:0] oled_data;
@@ -50,7 +51,7 @@ reg [2:0] state;
 reg [13:0] score = 0;
 parameter [2:0] 
         IDLE = 3'b000,
-        START = 3'b001,
+        SQUARE = 3'b001,
         CIRCLE = 3'b010,
         RING = 3'b011,
         MISSED = 3'b100,
@@ -76,12 +77,21 @@ begin
 end
 //BRAM initialisation
 
-/////////clk select
+//////////////////////////////////////////////////////////////////////////health system
+reg [9:0]health = 100;
 
+HealthBar healthbar(health,clk,led);
+
+parameter [3:0] SQUARE_DEDUCT = 4,
+                TRIANGLE_DEDUCT = 1,
+                CIRCLE_DEDUCT = 12,
+                STAR_DEDUCT = 10,
+                RING_DEDUCT = 2;
+                
 //////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
 begin
-    if(state == START || state == CIRCLE)
+    if(state == SQUARE || state == CIRCLE)
     begin
         insert_clk <= clk_40hz;
     end
@@ -98,7 +108,13 @@ end
 //////////////////////////////////////////////////////////////////////////////btn checking logic
 always@(posedge insert_clk)
 begin
-    //////RESET
+ 
+    if(health < 10'd1)
+    begin
+        state <= MISSED;
+    end
+    
+    ///////////////////////////////////////////////////////////////////////////////RESET state
     if (reset)
     begin
         state <= RESET;
@@ -110,14 +126,16 @@ begin
         RESET:
         begin
             score <= 0;
+            health <= 10'd100;
                 if(!reset)begin
                     state <= IDLE;
                 end
         end
         
-        ////////////////IDLE STATE
+        ///////////////////////////////////////////////////////////////////IDLE STATE
         IDLE:
         begin
+            health <= 10'd100;
             box_top <= 0;
             triangle_top <= 0;
             circle_top <= 0;
@@ -126,34 +144,31 @@ begin
             score <= 0;
                 if(btnC)
                 begin
-                    state <= START;
+                    state <= SQUARE;
                 end
         end   
         
-        ///////////////START STATE
-        START:
+        //////////////////////////////////////////////////////////////SQUARE STATE
+        SQUARE:
         begin
-            if(box_top < 42)
-            begin
-                box_top <= box_top + 1;
-            end
-            if(box_top == 42)
-            begin
-                if(btnU)
+            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;
+                if(box_top < 42)
                 begin
-                    score <= score + 1;
-                    circle_top <= 0;
-                    triangle_top <= 0;
-                    star_top <= 0;
-                    ring_top <= 0;
-                    //////////////////if fail system is taken out then don't care else remember to add here/////////////////////
-                    state <= TRIANGLE;
+                    box_top <= box_top + 1;
                 end
-                else
+                if(box_top == 42)
                 begin
-                    state <= MISSED;
+                    if(btnU)
+                    begin
+                        score <= score + 1;
+                        state <= TRIANGLE;
+                    end
+                    else
+                    begin
+                        health <= (health > SQUARE_DEDUCT)?(health - SQUARE_DEDUCT):0;     
+                        state <= TRIANGLE;
+                    end
                 end
-            end
         end
         
         /////////////////TRIANGLE STATE
@@ -168,12 +183,12 @@ begin
                 if(btnD)
                 begin
                     score <= score + 2;
-                    box_top <= 0;
                     state <= CIRCLE;
                 end
                 else
                 begin
-                    state <= MISSED;
+                    health <= (health > TRIANGLE_DEDUCT)?(health - TRIANGLE_DEDUCT):0;
+                    state <= CIRCLE;
                 end
             end
         end
@@ -195,7 +210,8 @@ begin
                 end
                 else
                 begin
-                    state <= MISSED;
+                    health <= (health > CIRCLE_DEDUCT)?(health - CIRCLE_DEDUCT):0;
+                    state <= STAR;
                 end
             end
         end
@@ -217,7 +233,8 @@ begin
                 end
                 else
                 begin
-                    state <= MISSED;
+                    health <= (health > STAR_DEDUCT)?(health - STAR_DEDUCT):0;
+                    state <= RING;
                 end    
             end
         end
@@ -236,14 +253,15 @@ begin
                 begin
                     score <= score + 8;
                     star_top <= 0;
-                    state <= START;
+                    state <= SQUARE;
                 end
                 else
                 begin
-                    state <= MISSED;
+                    box_top <= 0;
+                    health <= (health > RING_DEDUCT)?(health - RING_DEDUCT):0;
+                    state <= SQUARE;
                 end    
-            end
-        
+            end       
         
         end
         
@@ -262,7 +280,7 @@ begin
     end
 end
 
-////////////////////////////////////////////////////OLED Assignment
+///////////////////////////////////////////////////////////////////////////////////OLED Assignment
 always@(posedge clk_6p25mhz)
 begin
     col <= pixel_index % 96;
@@ -296,7 +314,7 @@ begin
         end
     end
     
-    if (state == START)
+    if (state == SQUARE)
     begin
         if (col<80 && col>=5 && row >= 58 && row <=60)
         begin
@@ -397,8 +415,8 @@ begin
     case(state)
         RESET:
         begin
-            an[3:0] <= 4'b0000;
-            seg[6:0] <= 7'b0000000;
+            an[3:0] <= 4'b1111;
+            seg[6:0] <= 7'b1111111;
         end
         
         IDLE:
@@ -407,7 +425,7 @@ begin
             seg[6:0] <= 7'b1111110;
         end
         
-        START,TRIANGLE,CIRCLE,STAR,RING,MISSED:
+        SQUARE,TRIANGLE,CIRCLE,STAR,RING,MISSED:
         begin
             case(digit_select)
                     2'b00: begin

@@ -2,10 +2,10 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sat Oct 26 23:18:23 2024
-# Process ID: 15436
+# Start of session at: Mon Oct 28 20:39:46 2024
+# Process ID: 18588
 # Current directory: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14864 C:\Users\dtc20\EE2026-Project-No.4\EE2026_Project_W9.xpr\MODS\MODS.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16196 C:\Users\dtc20\EE2026-Project-No.4\EE2026_Project_W9.xpr\MODS\MODS.xpr
 # Log file: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/vivado.log
 # Journal file: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS\vivado.jou
 #-----------------------------------------------------------
@@ -16,14 +16,7 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.2/data/ip'.
-open_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 852.008 ; gain = 109.324
 update_compile_order -fileset sources_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 16
-[Sat Oct 26 23:19:45 2024] Launched synth_1...
-Run output will be captured here: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/synth_1/runme.log
-[Sat Oct 26 23:19:45 2024] Launched impl_1...
-Run output will be captured here: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1/runme.log
 open_hw
 connect_hw_server
 INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
@@ -58,5 +51,3 @@ Resolution:
 1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active.
 2. Make sure the BSCAN_SWITCH_USER_MASK device property in Vivado Hardware Manager reflects the user scan chain setting in the design and refresh the device.  To determine the user scan chain setting in the design, open the implemented design and use 'get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub]'.
 For more details on setting the scan chain property, consult the Vivado Debug and Programming User Guide (UG908).
-exit
-INFO: [Common 17-206] Exiting Vivado at Sat Oct 26 23:23:48 2024...
