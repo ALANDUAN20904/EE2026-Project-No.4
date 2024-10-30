@@ -47,17 +47,26 @@ reg [7:0] triangle_top = 0;
 reg [7:0] circle_top = 0;
 reg [7:0] star_top = 0;
 reg [7:0] ring_top = 0;
-reg [2:0] state;
+reg [7:0] hold_top = 0;
+
+reg holdstate_status = 0;
+reg hold_status = 0;
+reg [31:0]hold_count = 0;
+reg hold_check = 0;
+reg [31:0] holdcheck_count = 0;
+
+reg [3:0] state;
 reg [13:0] score = 0;
-parameter [2:0] 
-        IDLE = 3'b000,
-        SQUARE = 3'b001,
-        CIRCLE = 3'b010,
-        RING = 3'b011,
-        MISSED = 3'b100,
-        STAR = 3'b101,
-        RESET = 3'b110, 
-        TRIANGLE = 3'b111;
+parameter [3:0] 
+        IDLE = 4'b0000,
+        SQUARE = 4'b0001,
+        CIRCLE = 4'b0010,
+        RING = 4'b0011,
+        MISSED = 4'b0100,
+        STAR = 4'b0101,
+        RESET = 4'b0110, 
+        TRIANGLE = 4'b0111,
+        HOLD = 4'b1000;
         
 //////////////////////////////////////////////////////////////////////////7 segment 
 reg [1:0] digit_select = 0;
@@ -86,7 +95,8 @@ parameter [3:0] SQUARE_DEDUCT = 4,
                 TRIANGLE_DEDUCT = 1,
                 CIRCLE_DEDUCT = 3,
                 STAR_DEDUCT = 4,
-                RING_DEDUCT = 2;
+                RING_DEDUCT = 2,
+                HOLD_DEDUCT = 10;
                 
 //////////////////////////////////////////////////////////////////////////clk selection
 always@(posedge clk)
@@ -141,6 +151,7 @@ begin
             circle_top <= 0;
             star_top <= 0;
             ring_top <= 0;
+            hold_top <= 0;
             score <= 0;
                 if(btnC)
                 begin
@@ -151,7 +162,7 @@ begin
         //////////////////////////////////////////////////////////////SQUARE STATE
         SQUARE:
         begin
-            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;
+            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0; holdstate_status <= 0;
                 if(box_top < 42)///add a leeway of 3 pixels, 42 is hitting the bottom
                 begin
                     box_top <= box_top + 1;
@@ -261,10 +272,38 @@ begin
                 else if(ring_top == 47)
                 begin
                     box_top <= 0;
+                    hold_top <= 0;
                     health <= (health > RING_DEDUCT)?(health - RING_DEDUCT):0;
-                    state <= SQUARE;
+                    state <= HOLD;
                 end    
             end       
+        end
+        
+        /////////////////////////////////////////////////////////HOLD state
+        
+        HOLD:
+        begin
+            if(hold_top < 47)
+            begin
+                hold_top <= hold_top + 1;
+            end
+            if(hold_top > 42 && hold_top <= 47)
+            begin
+                holdstate_status <= 1;
+                if(hold_check)
+                begin
+                    if(hold_count <=299999999 && hold_count >= 99999999)//between 3 seconds and 1 second
+                    begin
+                        score <= score + 100;
+                        state <= SQUARE;
+                    end
+                    else 
+                    begin
+                         health <= (health > HOLD_DEDUCT)?(health - HOLD_DEDUCT):0;
+                        state <= SQUARE;
+                    end
+                end
+            end
         end
         
         /////////////////MISSED STATE
@@ -281,6 +320,49 @@ begin
     endcase
     end
 end
+
+////////////////////////////////////////////////////////////hold timer
+always@(posedge clk)
+begin
+    if(holdstate_status)
+    begin
+        if(btnU)/////i don't think this is hold
+        begin
+            hold_count<= (hold_count == 299999999)?0:hold_count + 1;
+        end
+        else 
+        begin
+            hold_count <= 0;
+        end
+    end
+end
+
+always@(posedge clk)
+begin   
+    if(holdstate_status)
+    begin
+        holdcheck_count<= (holdcheck_count == 299999999)?0:holdcheck_count + 1;
+        if(holdcheck_count == 299999999)
+        begin
+            hold_check <= 1;
+        end 
+    end
+    else 
+    begin
+        holdcheck_count <= 0;
+        hold_check <= 0;
+    end 
+end
+
+
+
+
+
+
+
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////OLED Assignment
 always@(posedge clk_6p25mhz)
@@ -407,6 +489,22 @@ begin
             oled_data <= BLACK;
         end
     end
+    
+    if(state == HOLD)
+    begin
+        if (col<80 && col>=5 && row >= 58 && row <=60)
+        begin
+            oled_data <= YELLOW;
+        end
+        else if(col>=30 && col<60 && row >= hold_top && row < hold_top + 10)
+        begin
+            oled_data <= YELLOW;
+        end 
+        else 
+        begin
+            oled_data <= BLACK;
+        end
+    end
     ///other states
 end
 
@@ -427,7 +525,7 @@ begin
             seg[6:0] <= 7'b1111110;
         end
         
-        SQUARE,TRIANGLE,CIRCLE,STAR,RING,MISSED:
+        SQUARE,TRIANGLE,CIRCLE,STAR,RING,HOLD,MISSED:
         begin
             case(digit_select)
                     2'b00: begin

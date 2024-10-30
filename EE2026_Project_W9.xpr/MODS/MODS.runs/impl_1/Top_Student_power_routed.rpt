@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Wed Oct 30 01:07:45 2024
+| Date             : Thu Oct 31 00:33:49 2024
 | Host             : AlanTheGreat running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_Student_power_routed.rpt -pb Top_Student_power_summary_routed.pb -rpx Top_Student_power_routed.rpx
 | Design           : Top_Student
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.092        |
+| Total On-Chip Power (W)  | 0.101        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.020        |
+| Dynamic (W)              | 0.029        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |     1648 |       --- |             --- |
-|   LUT as Logic |     0.001 |      926 |     20800 |            4.45 |
-|   CARRY4       |    <0.001 |      113 |      8150 |            1.39 |
-|   Register     |    <0.001 |      382 |     41600 |            0.92 |
-|   F7/F8 Muxes  |    <0.001 |       22 |     32600 |            0.07 |
+| Slice Logic    |     0.005 |     1856 |       --- |             --- |
+|   LUT as Logic |     0.004 |      990 |     20800 |            4.76 |
+|   CARRY4       |    <0.001 |      136 |      8150 |            1.67 |
+|   Register     |    <0.001 |      455 |     41600 |            1.09 |
+|   F7/F8 Muxes  |    <0.001 |       21 |     32600 |            0.06 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.002 |     1206 |       --- |             --- |
-| I/O            |     0.015 |       36 |       106 |           33.96 |
+| Signals        |     0.004 |     1400 |       --- |             --- |
+| I/O            |     0.018 |       36 |       106 |           33.96 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.092 |          |           |                 |
+| Total          |     0.101 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |
+| Vccint    |       1.000 |     0.021 |       0.011 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |
-| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |
+| Vcco33    |       3.300 |     0.006 |       0.005 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -142,12 +142,12 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| Top_Student    |     0.020 |
+| Top_Student    |     0.029 |
 |   clk20hz      |    <0.001 |
 |   clk40hz      |    <0.001 |
 |   clk6p25mhz   |    <0.001 |
 |   clk80hz      |    <0.001 |
-|   healthbar    |    <0.001 |
+|   healthbar    |     0.001 |
 |   oled_display |    <0.001 |
 +----------------+-----------+
 
