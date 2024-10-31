@@ -163,7 +163,7 @@ begin
         //////////////////////////////////////////////////////////////SQUARE STATE
         SQUARE:
         begin
-            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0; holdstate_status <= 0;
+            circle_top <= 0;triangle_top <= 0;star_top <= 0;ring_top <= 0;hold_top<=0; holdstate_status <= 0;
                 if(box_top < 42)///add a leeway of 3 pixels, 42 is hitting the bottom
                 begin
                     box_top <= box_top + 1;
@@ -267,8 +267,9 @@ begin
                 if(btnU && btnD)
                 begin
                     score <= score + 8;
+                    box_top <= 0;
                     star_top <= 0;
-                    state <= SQUARE;
+                    state <= HOLD;
                 end
                 else if(ring_top == 47)
                 begin
