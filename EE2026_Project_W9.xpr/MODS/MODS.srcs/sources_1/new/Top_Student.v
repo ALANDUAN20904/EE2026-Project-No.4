@@ -57,6 +57,7 @@ reg [31:0] holdcheck_count = 0;
 
 reg [3:0] state;
 reg [13:0] score = 0;
+reg [13:0] highscore = 0;
 parameter [3:0] 
         IDLE = 4'b0000,
         SQUARE = 4'b0001,
@@ -294,12 +295,12 @@ begin
                 begin
                     if(hold_count <=299999999 && hold_count >= 99999999)//between 3 seconds and 1 second
                     begin
-                        score <= score + 100;
+                        score <= score + 100;//something went wrong
                         state <= SQUARE;
                     end
                     else 
                     begin
-                         health <= (health > HOLD_DEDUCT)?(health - HOLD_DEDUCT):0;
+                        health <= (health > HOLD_DEDUCT)?(health - HOLD_DEDUCT):0;
                         state <= SQUARE;
                     end
                 end
@@ -309,6 +310,7 @@ begin
         /////////////////MISSED STATE
         MISSED:
         begin
+        highscore <= (score<=highscore)?highscore:score;
             if(btnR)
             begin
                 state <= IDLE;
@@ -328,7 +330,7 @@ begin
     begin
         if(btnU)/////i don't think this is hold
         begin
-            hold_count<= (hold_count == 299999999)?0:hold_count + 1;
+            hold_count<= (hold_count == 299999999)?0:hold_count + 1;//// hold_count is to count how much user has pressed
         end
         else 
         begin
@@ -353,15 +355,6 @@ begin
         hold_check <= 0;
     end 
 end
-
-
-
-
-
-
-
-
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////OLED Assignment
@@ -521,8 +514,36 @@ begin
         
         IDLE:
         begin
-            an[3:0] <= 4'b1110;
-            seg[6:0] <= 7'b1111110;
+            case(digit_select)
+                2'b00: begin
+                    if (highscore >= 1000) begin
+                        an <= 4'b0111; 
+                        seg <= seg_value[(highscore / 1000) % 10]; 
+                    end 
+                end   
+                
+                2'b01: begin
+                    if(highscore >= 100) begin
+                        an <= 4'b1011; 
+                        seg <= seg_value[(highscore / 100) % 10]; 
+                    end 
+                end
+                
+                2'b10: begin
+                    if (highscore >= 10) begin
+                        an <= 4'b1101; 
+                        seg <= seg_value[(highscore / 10) % 10]; 
+                    end 
+                end   
+                    
+                2'b11: begin    
+                    an <= 4'b1110; 
+                    seg <= seg_value[highscore % 10]; 
+                end
+            endcase
+            
+            digit_select <= digit_select + 1;
+            
         end
         
         SQUARE,TRIANGLE,CIRCLE,STAR,RING,HOLD,MISSED:
@@ -558,6 +579,8 @@ begin
                 digit_select <= digit_select + 1; 
                
             end
+            
+        ////////////////////////default 7-segment states in case something happens    
         default:
         begin
             an[3:0] <= 4'b1111;
