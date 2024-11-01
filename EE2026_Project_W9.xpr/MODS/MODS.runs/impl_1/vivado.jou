@@ -2,8 +2,13 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+<<<<<<< HEAD
+# Start of session at: Fri Nov  1 19:41:23 2024
+# Process ID: 44144
+=======
 # Start of session at: Fri Nov  1 16:28:50 2024
 # Process ID: 5240
+>>>>>>> main
 # Current directory: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1
 # Command line: vivado.exe -log Top_Student.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Top_Student.tcl -notrace
 # Log file: C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.runs/impl_1/Top_Student.vdi
