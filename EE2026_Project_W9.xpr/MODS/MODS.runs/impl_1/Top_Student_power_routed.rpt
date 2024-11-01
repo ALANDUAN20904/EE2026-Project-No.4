@@ -1,7 +1,11 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+<<<<<<< HEAD
 | Date             : Fri Nov  1 19:42:17 2024
+=======
+| Date             : Fri Nov  1 16:29:47 2024
+>>>>>>> main
 | Host             : AlanTheGreat running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_Student_power_routed.rpt -pb Top_Student_power_summary_routed.pb -rpx Top_Student_power_routed.rpx
 | Design           : Top_Student
@@ -30,10 +34,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.093        |
+| Total On-Chip Power (W)  | 0.091        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
+<<<<<<< HEAD
 | Dynamic (W)              | 0.021        |
+=======
+| Dynamic (W)              | 0.019        |
+>>>>>>> main
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -52,6 +60,7 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
+<<<<<<< HEAD
 | Clocks         |     0.003 |        3 |       --- |             --- |
 | Slice Logic    |     0.008 |     2312 |       --- |             --- |
 |   LUT as Logic |     0.007 |     1177 |     20800 |            5.66 |
@@ -62,8 +71,20 @@ Table of Contents
 |   Others       |     0.000 |       33 |       --- |             --- |
 | Signals        |     0.006 |     1673 |       --- |             --- |
 | I/O            |     0.005 |       36 |       106 |           33.96 |
+=======
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |     0.006 |     2187 |       --- |             --- |
+|   LUT as Logic |     0.006 |     1147 |     20800 |            5.51 |
+|   CARRY4       |    <0.001 |      178 |      8150 |            2.18 |
+|   Register     |    <0.001 |      516 |     41600 |            1.24 |
+|   F7/F8 Muxes  |    <0.001 |        2 |     32600 |           <0.01 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Others       |     0.000 |       33 |       --- |             --- |
+| Signals        |     0.005 |     1611 |       --- |             --- |
+| I/O            |     0.006 |       36 |       106 |           33.96 |
+>>>>>>> main
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.093 |          |           |                 |
+| Total          |     0.091 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +94,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
+<<<<<<< HEAD
 | Vccint    |       1.000 |     0.026 |       0.016 |      0.010 |
+=======
+| Vccint    |       1.000 |     0.023 |       0.013 |      0.010 |
+>>>>>>> main
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -142,7 +167,11 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
+<<<<<<< HEAD
 | Top_Student    |     0.021 |
+=======
+| Top_Student    |     0.019 |
+>>>>>>> main
 |   clk20hz      |    <0.001 |
 |   clk40hz      |    <0.001 |
 |   clk6p25mhz   |    <0.001 |
@@ -157,7 +186,7 @@ Table of Contents
 |     dff2D      |     0.000 |
 |     dff2L      |    <0.001 |
 |     dff2U      |    <0.001 |
-|   healthbar    |     0.001 |
+|   healthbar    |    <0.001 |
 |   oled_display |    <0.001 |
 +----------------+-----------+
 

@@ -302,7 +302,7 @@ begin
                 holdstate_status <= 1;
                 if(hold_check)
                 begin
-                    if(hold_count <=299999999 && hold_count >= 99999999)//between 3 seconds and 1 second
+                    if(hold_count <=299999999 && hold_count >= 199999999)//between 3 seconds and 1 second
                     begin
                         score <= score + 100;//something went wrong
                         state <= SQUARE;
