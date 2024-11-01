@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1730380749">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1730448332">
   <File Type="BITSTR-BMM" Name="Top_Student_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="Top_Student_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="Top_Student_timing_summary_init.rpt"/>
@@ -82,6 +82,20 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../../MODS.srcs/sources_1/imports/Desktop/Oled_Display.v"/>
         <Attr Name="ImportTime" Val="1677398246"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/debounce.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/dff.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

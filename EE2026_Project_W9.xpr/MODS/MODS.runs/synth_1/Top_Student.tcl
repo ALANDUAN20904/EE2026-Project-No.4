@@ -34,6 +34,8 @@ add_files C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.src
 read_verilog -library xil_defaultlib {
   C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/HealthBar.v
   C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/imports/Desktop/Oled_Display.v
+  C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/debounce.v
+  C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/dff.v
   C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/flexi_clk.v
   C:/Users/dtc20/EE2026-Project-No.4/EE2026_Project_W9.xpr/MODS/MODS.srcs/sources_1/new/Top_Student.v
 }
