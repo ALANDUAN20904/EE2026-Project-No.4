@@ -41,6 +41,10 @@ parameter [15:0] CYAN = 16'b0011011011011011,
                  
 Oled_Display oled_display(clk_6p25mhz, 0, frame_begin, sending_pixels, sample_pixel, pixel_index, oled_data, JB[0], JB[1], JB[3], JB[4], JB[5], JB[6], JB[7]);
 
+///////////////////////////////////////////////////////////////debounce
+wire btnU_d, btnC_d, btnL_d, btnR_d, btnD_d; 
+debounce db (.btnU(btnU),.btnC(btnC),.btnL(btnL),.btnR(btnR),.btnD(btnD),.clk(clk),.btnU_d(btnU_d),.btnC_d(btnC_d),.btnL_d(btnL_d),.btnR_d(btnR_d),.btnD_d(btnD_d));
+
 ///////////////////////////////////////////////////////////////states definition
 reg [7:0] box_top = 0;
 reg [7:0] triangle_top = 0;
@@ -154,7 +158,7 @@ begin
             ring_top <= 0;
             hold_top <= 0;
             score <= 0;
-                if(btnC)
+                if(btnC_d)
                 begin
                     state <= SQUARE;
                 end
@@ -170,7 +174,7 @@ begin
                 end
                 if(box_top >=37 && box_top <= 42)
                 begin
-                    if(btnU)
+                    if(btnU_d)
                     begin
                         score <= score + 1;
                         state <= TRIANGLE;
@@ -192,7 +196,7 @@ begin
             end
             if(triangle_top >= 32 && triangle_top <= 37)
             begin
-                if(btnD)
+                if(btnD_d)
                 begin
                     score <= score + 2;
                     state <= CIRCLE;
@@ -214,7 +218,7 @@ begin
             end
             if(circle_top >= 42 && circle_top <= 47)
             begin
-                if(btnL)
+                if(btnL_d)
                 begin
                     score <= score + 4;
                     triangle_top <= 0;
@@ -237,13 +241,13 @@ begin
             end
             if(star_top >= 42 && star_top <= 47)
             begin
-                if(btnU && btnL)
+                if(btnU_d && btnL_d)
                 begin
                     score <= score + 6;
                     circle_top <= 0;
                     state <= RING;
                 end
-                else if(btnU || btnL || btnU || btnD)
+                else if(btnU_d || btnL_d || btnU_d || btnD_d)
                 begin
                     health <= (health > STAR_DEDUCT)?(health - STAR_DEDUCT):0;
                 end else if(star_top == 47)
@@ -264,7 +268,7 @@ begin
             end
             if(ring_top >= 42 && ring_top <= 47)
             begin
-                if(btnU && btnD)
+                if(btnU_d && btnD_d)
                 begin
                     score <= score + 8;
                     box_top <= 0;
