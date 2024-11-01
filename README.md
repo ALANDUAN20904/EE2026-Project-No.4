@@ -1,6 +1,6 @@
 # EE2026-Project-No.4
 
-```markdown
+
 # Top_Student Game Module
 
 ## Table of Contents
@@ -97,10 +97,10 @@ The OLED display will show different colors based on the current game state. Ens
 
 ### Health Management
 The health bar is managed automatically based on interactions with shapes. Health decreases based on missed interactions or incorrect button presses.
-```
 
 
 
+### Milestones
 Milestone 1: user input (btnL, btnC, btnR) is checked against expected button sequence and hold duration. A simple count of correct inputs is implemented (5 days) 
 Milestone 2: Implement player score calculation based on correct sequence and duration (5 days)
 Milestone 3: Implement high score system to maintain current device high score (5 days)
