@@ -1,15 +1,5 @@
 `timescale 1ns / 1ps
 
-//////////////////////////////////////////////////////////////////////////////////
-//
-//  FILL IN THE FOLLOWING INFORMATION:
-//  STUDENT A NAME: 
-//  STUDENT B NAME:
-//  STUDENT C NAME: 
-//  STUDENT D NAME:  
-//
-//////////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////notes////////////////////////////////////////////////////////
 ///if you want to add new states, modify 1) state definition (add or modify state name, take note of #total state | register value) 2) clk selection 3)btn checking logic (add a state and clear value at IDLE) 4)OLED assignment 5)score system 6) 
 
@@ -59,9 +49,23 @@ reg [31:0]hold_count = 0;
 reg hold_check = 0;
 reg [31:0] holdcheck_count = 0;
 
-reg [3:0] state;
+/////////////////////////////////////////////////////////score variables
 reg [13:0] score = 0;
-reg [13:0] highscore = 0;
+reg [13:0] topscore = 0;
+reg [13:0] high_scores [0:4];
+
+initial 
+begin
+    high_scores[0] = 0;
+    high_scores[1] = 0;
+    high_scores[2] = 0;
+    high_scores[3] = 0;
+    high_scores[4] = 0;
+end
+
+
+/////////////////////////////////////////////////////////states
+reg [3:0] state;
 parameter [3:0] 
         IDLE = 4'b0000,
         SQUARE = 4'b0001,
@@ -315,7 +319,15 @@ begin
         /////////////////MISSED STATE
         MISSED:
         begin
-        highscore <= (score<=highscore)?highscore:score;
+        topscore <= high_scores[0];/////pop high_scores[0] as topscore, since it's top of the array
+        /////////////////////update array logic: high_scores[i-1] <= (high_scores[i]<=high_scores[i-1]):high_score[i-1]:high_scores[i];
+        high_scores[4] <= (score <= high_scores[4])?high_scores[4]:score;
+        
+        high_scores[3] <= (high_scores[4]<=high_scores[3])?high_scores[3]:high_scores[4];
+        high_scores[2] <= (high_scores[3]<=high_scores[2])?high_scores[2]:high_scores[3];
+        high_scores[1] <= (high_scores[2]<=high_scores[1])?high_scores[1]:high_scores[2];
+        high_scores[0] <= (high_scores[1]<=high_scores[0])?high_scores[0]:high_scores[1];
+ 
             if(btnR)
             begin
                 state <= IDLE;
@@ -521,29 +533,29 @@ begin
         begin
             case(digit_select)
                 2'b00: begin
-                    if (highscore >= 1000) begin
+                    if (topscore >= 1000) begin
                         an <= 4'b0111; 
-                        seg <= seg_value[(highscore / 1000) % 10]; 
+                        seg <= seg_value[(topscore / 1000) % 10]; 
                     end 
                 end   
                 
                 2'b01: begin
-                    if(highscore >= 100) begin
+                    if(topscore >= 100) begin
                         an <= 4'b1011; 
-                        seg <= seg_value[(highscore / 100) % 10]; 
+                        seg <= seg_value[(topscore / 100) % 10]; 
                     end 
                 end
                 
                 2'b10: begin
-                    if (highscore >= 10) begin
+                    if (topscore >= 10) begin
                         an <= 4'b1101; 
-                        seg <= seg_value[(highscore / 10) % 10]; 
+                        seg <= seg_value[(topscore / 10) % 10]; 
                     end 
                 end   
                     
                 2'b11: begin    
                     an <= 4'b1110; 
-                    seg <= seg_value[highscore % 10]; 
+                    seg <= seg_value[topscore % 10]; 
                 end
             endcase
             
