@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////notes////////////////////////////////////////////////////////
 ///if you want to add new states, modify 1) state definition (add or modify state name, take note of #total state | register value) 2) clk selection 3)btn checking logic (add a state and clear value at IDLE) 4)OLED assignment 5)score system 6) 
 
-module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,rx,sw14, output [7:0] JB,output reg [6:0]seg, output reg [3:0]an, output [9:0]led,output tx);
+module Top_Student (input clk,btnC,btnL,btnR,btnU,btnD,reset,sw14,output reg [7:0] JA, input [7:0] JB,output [7:0]JC,output reg [6:0]seg, output reg [3:0]an, output [9:0]led);
        
 ////////////////clk
 reg insert_clk = 0;
@@ -29,7 +29,7 @@ parameter [15:0] CYAN = 16'b0011011011011011,
                  PINK = 16'b11111_000111_10011,
                  BLUE = 16'b00011_111011_10110;
                  
-Oled_Display oled_display(clk_6p25mhz, 0, frame_begin, sending_pixels, sample_pixel, pixel_index, oled_data, JB[0], JB[1], JB[3], JB[4], JB[5], JB[6], JB[7]);
+Oled_Display oled_display(clk_6p25mhz, 0, frame_begin, sending_pixels, sample_pixel, pixel_index, oled_data, JC[0], JC[1], JC[3], JC[4], JC[5], JC[6], JC[7]);
 
 ///////////////////////////////////////////////////////////////debounce
 wire btnU_d, btnC_d, btnL_d, btnR_d, btnD_d; 
@@ -50,13 +50,14 @@ reg hold_check = 0;
 reg [31:0] holdcheck_count = 0;
 
 /////////////////////////////////////////////////////////score variables
-reg [13:0] score = 0;
-reg [13:0] topscore = 0;/////transmitted
-reg [13:0] high_scores [0:4];
-reg [13:0] global_highscore;/////need to compare and compute this 
-reg [13:0] score_rx;
-reg tx_en = 0;
-reg rx_en = 0;
+reg [7:0] score = 0;
+reg [7:0] topscore = 0;/////transmitted
+reg [7:0] high_scores [0:4];
+reg [7:0] global_highscore;/////need to compare and compute this 
+reg [7:0] score_received;
+reg [7:0]topscore_1st = 0; //8 bit JA[7:0]
+reg [5:0]topscore_2nd = 0; //6 bit 
+
 initial //////////////////// I guess we need to change this later when we have non volatile thing up
 begin
     high_scores[0] = 0;
@@ -67,8 +68,7 @@ begin
     global_highscore = 0;
 end
 
-uart_tx uart_transmit(.clk(clk),.tx_en(tx_en),.data(topscore),.tx(tx));
-uart_rx uart_receive(.clk(clk),.rx(rx),.rx_en(rx_en),.received_score(score_rx));/////rx is from top_student input, score_rx is instantiated here too
+ 
 /////////////////////////////////////////////////////////states
 reg [3:0] state;
 parameter [3:0] 
@@ -282,14 +282,14 @@ begin
                     score <= score + 8;
                     box_top <= 0;
                     star_top <= 0;
-                    state <= HOLD;
+                    state <= SQUARE;
                 end
                 else if(ring_top == 47)
                 begin
                     box_top <= 0;
                     hold_top <= 0;
                     health <= (health > RING_DEDUCT)?(health - RING_DEDUCT):0;
-                    state <= HOLD;
+                    state <= SQUARE;
                 end    
             end       
         end
@@ -309,7 +309,7 @@ begin
                 begin
                     if(hold_count <=299999999 && hold_count >= 199999999)//between 3 seconds and 1 second
                     begin
-                        score <= score + 100;//something went wrong
+                        score <= score + 10;//something went wrong
                         state <= SQUARE;
                     end
                     else 
@@ -333,9 +333,16 @@ begin
         high_scores[1] <= (high_scores[2]<=high_scores[1])?high_scores[1]:high_scores[2];
         high_scores[0] <= (high_scores[1]<=high_scores[0])?high_scores[0]:high_scores[1];
         
-        if(score_rx > global_highscore)
+        JA[7:0] <= topscore;
+        score_received <= JB[7:0];
+        
+        if(score_received > global_highscore)
         begin
-            global_highscore <= score_rx;
+            global_highscore <= score_received;
+        end
+        else
+        begin
+            global_highscore <= global_highscore;
         end
         
             if(btnR)
@@ -385,19 +392,19 @@ end
 
 
 ///////////////////////////////uart tx and rx enable
-always@(posedge clk)
-begin
-    if(state == MISSED || state == IDLE)
-    begin
-        tx_en <= 1;
-        rx_en <= 1;
-    end
-    else
-    begin
-        tx_en <= 0;
-        rx_en <= 0;
-    end
-end
+//always@(posedge clk)
+//begin
+//    if(state == MISSED || state == IDLE)
+//    begin
+//        tx_en <= 1;
+//        rx_en <= 1;
+//    end
+//    else
+//    begin
+//        tx_en <= 0;
+//        rx_en <= 0;
+//    end
+//end
 
 ///////////////////////////////////////////////////////////////////////////////////OLED Assignment
 always@(posedge clk_6p25mhz)
